@@ -10,6 +10,7 @@ class Socket {
         this.io = new SocketIO(http);
         this.mensajes = [];
         this.usuarios = [];
+        let entries = [];
     }
 
     init(){
