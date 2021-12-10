@@ -26,7 +26,7 @@ form_data.addEventListener('submit', function(e){
     //     username: username.value
     // });
     //input.value = '';
-    readSocket(){
+  //  readSocket(){
         
-    }
+   // }
 });
