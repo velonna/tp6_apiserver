@@ -1,5 +1,6 @@
-let {Server: SocketIO} = require("socket.io");
-
+let {Server: SocketIO} = require("socket.io");///
+//let Contenedor = require('./../..models/contenedor.js');
+//let contenedor = new Contenedor("./chat.txt");
 class Socket {
     static instancia;
     constructor(http){
@@ -10,7 +11,7 @@ class Socket {
         this.io = new SocketIO(http);
         this.mensajes = [];
         this.usuarios = [];
-        let entries = [];
+        let productos = [];
     }
 
     init(){
@@ -21,7 +22,9 @@ class Socket {
                 socket.emit("init", this.mensajes);
 
                 socket.on("mensaje", data =>{
+                    //devolverProductos(prod);
                     this.mensajes.push(data);
+                   
                     this.io.sockets.emit('listenserver', this.mensajes);
                 });
                 
@@ -80,5 +83,12 @@ class Socket {
         }
     }
 }
+function devolverProductos(prod){
+    contenedor.save(prod).then(data => {
+     console.log(data);
+    }).catch(error => {
+        console.log(error);
+    });
 
+}
 module.exports = Socket;
