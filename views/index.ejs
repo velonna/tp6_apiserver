@@ -170,7 +170,7 @@ color: #fff;
                 font-size: 12px;
                 font-family: sans-serif;
                 color: #fff;">
-                            <h3>Todos los usuarios</h3>
+                            <h4>Todos los usuarios <i id="fechaActual" style="color: rgb(100, 60, 23);"></i></h4>
                         </div>
                         <div class="body_users">
                             <ul id="user_list">
@@ -189,7 +189,7 @@ color: #fff;
         <script>
             let student = null;
             let socket = null;
-
+            let fechaActual = document.getElementById("fechaActual");
             let input = document.getElementById("inputtext");
             let parrafo = document.getElementById("contenedor_texto");
             let button = document.getElementById("sendSocket");
@@ -246,7 +246,7 @@ color: #fff;
                     let inner = ``;
                     console.log("Recibiendo..", data);
                     data.forEach(element => {
-                        inner += `<b>${element.name}:</b> ${element.mensaje} </br>`;
+                        inner += `<b>${element.email}:</b> ${element.mensaje} </br>`;
                     });
                     parrafo.innerHTML = inner;
                 });
@@ -274,25 +274,15 @@ color: #fff;
                                         max-width: fit-content;'
                                         src=${element.photo}>
                                 </div>
-                                <b>${element.name}:</b> ${status}
+                                <b>${element.email}:</b> ${status}
                                 </li>`;
                     });
                     user_list.innerHTML = inner;
+                    fechaActual.innerHTML = new Date().toLocaleDateString();
+                    hola();
                 });
             }
-            
-        /*   button.addEventListener("click", e=>{
-                e.preventDefault();
-                let text = input.value;
-                if(text != ""){
-                    socket.emit("mensaje", {
-                        name: student.name,
-                        mensaje: text
-                    });
-                    input.value = "";
-                }
-            });
-            */
+     
             button.addEventListener("click", e =>{
                 let sendMessagge = {
                     ...student,
@@ -307,8 +297,11 @@ color: #fff;
                 //  input.value = "";
                 
             })
-            console.log("student", student);
-            console.log("post", post);
+            function hola(){
+                console.log("hola");
+                //requiere fs
+              //  writeFileSync('~/public/mensajes.txt', JSON.stringify(data));
+            }
         </script>
       </div>
    
